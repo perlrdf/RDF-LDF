@@ -70,6 +70,9 @@ jobs:
 
       - name: Install Perl deps
         run: |
+          # No static install opt-in specifically for RDF::NS. The sharedir
+          # does not get installed on 5.14 and 5.16 due to <https://github.com/miyagawa/cpanminus/issues/668>.
+          cpanm --no-static-install --notest RDF::NS
           cpanm --notest --installdeps .
 
       - name: Run tests
